@@ -49,9 +49,11 @@ router.get('/login', async (request, response) => {
 
         // If password is valid
         if (isValidPassword) {
-            return response.status(200).json({ message: 'account found!', user_data: user });
+            //return response.status(200).json({ message: 'Login Success'});
+            // Send a login successful, (REQUIRED FOR FRONT END PAGE)
+            response.json("Login Successful");
         } else {
-            return response.status(400).send({ error: 'wrong password!', user_data: user });
+            return response.status(400).send({ error: 'wrong password!'});
         }
 
     }   catch  (error)   {
