@@ -4,7 +4,7 @@ import { User } from '../models/userModel.js';
 const router = express.Router();
 
 // Route for Signup
-router.post('/', async (request, response) => {
+router.post('/signup', async (request, response) => {
     try {
         if (
             !request.body.name ||
