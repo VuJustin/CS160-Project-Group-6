@@ -33,23 +33,25 @@ router.post('/', async (request, response) => {
 });
 
 // Route for Login
-router.get('/login/:email', async (request, response) => {
+router.get('/login', async (request, response) => {
     try {
-
-        const { email } = request.params;
-
-        const user = await User.find({ email });
-
+        // Finding the user w/ the correct email
+        const query = User.findOne({email: request.body.email});
+        query.select("password")
+        const user = await query.exec();
+        
         if (!user) {
             return response.status(404).send({ error: 'User not found!' });
         }
 
+        // Checking if user password matches the body password here
         const isValidPassword = request.body.password === user.password;
 
+        // If password is valid
         if (isValidPassword) {
             return response.status(200).json({ message: 'account found!', user_data: user });
         } else {
-            return response.status(400).send({ error: 'wrong password!', user: false });
+            return response.status(400).send({ error: 'wrong password!', user_data: user });
         }
 
     }   catch  (error)   {
