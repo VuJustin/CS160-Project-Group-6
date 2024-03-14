@@ -44,7 +44,27 @@ const Login = () => {
 
 
     return(
-        <div>This is the Login Page</div>
+        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
+            <div className ="bg-white p3 rounded w-25"> 
+                <label className='text-xl mr-4'> <strong> Login </strong></label>
+                <form onSubmit={handleSubmit}> 
+                    <div className="mb-3">
+                        <label className = "text-xl mr-4 text-gray-500"> <strong> Email </strong> </label>
+                    </div>
+
+                    <input 
+                        type = 'text'
+                        placeholder = 'Email Here'
+                        autoComplete="off"
+                        value = {email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className = 'border-2 border-gray-500 px-4 py-2 w-full'
+                    />
+
+                
+                </form>
+            </div>
+        </div>
     )
 }
 
