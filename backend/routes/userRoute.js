@@ -16,7 +16,7 @@ router.post('/signup', async (request, response) => {
             });
         }
         
-
+        //check if the email already exist
         const query = User.findOne({ email: email });
         query.select("password")
         const existUser = await query.exec();
@@ -25,12 +25,14 @@ router.post('/signup', async (request, response) => {
             return response.status(401).send({ error: 'User already exist!' });
         }
 
+        //create new User object
         const newUser = new User({
-            name: name,
+            name: name, //first name is property of User object, second name is value
             email: email,
             password: password
         });
 
+        //save the User in the user database
         const user = await newUser.save();
 
         return response.status(201).send(user);
