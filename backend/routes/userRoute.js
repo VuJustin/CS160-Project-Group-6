@@ -33,7 +33,7 @@ router.post('/signup', async (request, response) => {
 });
 
 // Route for Login
-router.get('/login', async (request, response) => {
+router.post('/login', async (request, response) => {
     try {
         // Finding the user w/ the correct email
         const query = User.findOne({email: request.body.email});
@@ -41,7 +41,9 @@ router.get('/login', async (request, response) => {
         const user = await query.exec();
         
         if (!user) {
-            return response.status(404).send({ error: 'User not found!' });
+            return response.status(401).send({ error: 'User not found!' });
+            //return response.status(404).send("User not found");
+           // return
         }
 
         // Checking if user password matches the body password here
@@ -49,11 +51,13 @@ router.get('/login', async (request, response) => {
 
         // If password is valid
         if (isValidPassword) {
-            //return response.status(200).json({ message: 'Login Success'});
+            return response.status(200).json({ message: 'Login Success'});
             // Send a login successful, (REQUIRED FOR FRONT END PAGE)
-            response.json("Login Successful");
+            //return response.send("Login Successful");
+            
         } else {
-            return response.status(400).send({ error: 'wrong password!'});
+            return response.status(401).send({ error: 'wrong password!'});
+            //return response.send("Wrong Password or Email");
         }
 
     }   catch  (error)   {
