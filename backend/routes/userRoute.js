@@ -17,7 +17,7 @@ router.post('/signup', async (request, response) => {
         }
         
 
-        const query = User.findOne({ email: request.body.email });
+        const query = User.findOne({ email: email });
         query.select("password")
         const existUser = await query.exec();
 
@@ -26,9 +26,9 @@ router.post('/signup', async (request, response) => {
         }
 
         const newUser = new User({
-            name: request.body.name,
-            email: request.body.email,
-            password: request.body.password
+            name: name,
+            email: email,
+            password: password
         });
 
         const user = await newUser.save();
