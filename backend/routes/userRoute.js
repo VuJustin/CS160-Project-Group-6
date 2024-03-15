@@ -6,23 +6,32 @@ const router = express.Router();
 // Route for Signup
 router.post('/signup', async (request, response) => {
     try {
-        if (
-            !request.body.name ||
-            !request.body.email ||
-            !request.body.password
-        ) {
+        const { name, email, password } = request.body;
+        if (!name || !email || !password) {
+            console.log(name);
+            console.log(email);
+            console.log(password);
             return response.status(400).send({
-                message: 'Complete all required fields: name, email, password'
+                error: 'Complete all required fields: name, email, password'
             });
         }
+        
 
-        const newUser = {
+        const query = User.findOne({ email: request.body.email });
+        query.select("password")
+        const existUser = await query.exec();
+
+        if (existUser) {
+            return response.status(401).send({ error: 'User already exist!' });
+        }
+
+        const newUser = new User({
             name: request.body.name,
             email: request.body.email,
             password: request.body.password
-        };
+        });
 
-        const user = await User.create(newUser);
+        const user = await newUser.save();
 
         return response.status(201).send(user);
 
