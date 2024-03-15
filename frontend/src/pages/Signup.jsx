@@ -26,7 +26,7 @@ const Signup = () => {
                 }
             })
             .catch((error) => {
-                alert('Error Occured: ' + error);
+                alert('Error Occured: ' + error.response.data.error); //display error message
                 console.log(error);
             })
            
@@ -62,7 +62,7 @@ const Signup = () => {
                 <div className = 'my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Password </label>
                     <input 
-                        type='text'
+                        type='password'
                         placeholder = 'Password'
                         autoComplete="off"
                         value={password}

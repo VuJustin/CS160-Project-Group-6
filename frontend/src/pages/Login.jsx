@@ -34,7 +34,7 @@ const Login = () => {
                 } 
             })
             .catch((error) => {
-                alert('Error Occured: ' + error);
+                alert('Error Occured: ' + error.response.data.error);
                 console.log(error);
             })
     };
@@ -100,7 +100,7 @@ const Login = () => {
                 <div className = 'my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Password </label>
                     <input 
-                        type='text'
+                        type='password'
                         placeholder = 'Password Here'
                         autoComplete="off"
                         value={password}

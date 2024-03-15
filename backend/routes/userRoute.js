@@ -36,7 +36,7 @@ router.post('/signup', async (request, response) => {
         return response.status(201).send(user);
 
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         response.status(500).send({ message: error.message });
     }
 });
