@@ -11,26 +11,33 @@ const Signup = () => {
     const [name, setName] = useState(''); //initalize the value with useState
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = () => {
         console.log(name);
         console.log(email);
         console.log(password);
+        console.log(confirmPassword);
         const newUser = { name, email, password };
+        if(password===confirmPassword) {
+            axios.post("http://localhost:5555/user/signup", newUser)
+                .then(result => {
+                    console.log(result);
+                    if (result.status === 201) {
+                        navigate("/");
+                    }
+                })
+                .catch((error) => {
+                    alert('Error Occured: ' + error.response.data.error); //display error message
+                    console.log(error);
+                })
 
-        axios.post("http://localhost:5555/user/signup", newUser)
-            .then(result => {
-                console.log(result);
-                if (result.status === 201) {
-                    navigate("/");
-                }
-            })
-            .catch((error) => {
-                alert('Error Occured: ' + error.response.data.error); //display error message
-                console.log(error);
-            })
-           
+        }
+        else {
+            alert('Passwords do not match!');
+        }
+
     };
 
     return(
@@ -71,6 +78,17 @@ const Signup = () => {
                         autoComplete="off"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="border-2 border-gray-500 px-4 py-2 w-full"
+                    />
+                </div>
+                <div className='my-4'>
+                    <label className='text-xl mr-4 text-gray-500'> Confirm Password </label>
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        autoComplete="off"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         className="border-2 border-gray-500 px-4 py-2 w-full"
                     />
                 </div>
