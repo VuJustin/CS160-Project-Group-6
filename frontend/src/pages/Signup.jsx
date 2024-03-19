@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // Navigation to other pages
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/das.png";
 
 
 const Signup = () => {
@@ -34,8 +35,11 @@ const Signup = () => {
 
     return(
         <div className='p-4'>
-            <h1 className='text-3xl my-4' align="center"> <strong> Sign Up </strong> </h1>
-            <div className ='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+            <div align="center">
+                <img src={logo} alt="Logo" width={1000} height={1000}/>
+            </div>
+            <h1 className='text-3xl my-4' align="center"><strong> Sign Up </strong></h1>
+            <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
                 <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Name </label>
                     <input
@@ -49,9 +53,9 @@ const Signup = () => {
                 </div>
                 <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Email </label>
-                    <input 
+                    <input
                         type='text'
-                        placeholder = 'Email'
+                        placeholder='Email'
                         autoComplete="off"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -59,11 +63,11 @@ const Signup = () => {
                     />
                 </div>
 
-                <div className = 'my-4'>
+                <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Password </label>
-                    <input 
+                    <input
                         type='password'
-                        placeholder = 'Password'
+                        placeholder='Password'
                         autoComplete="off"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

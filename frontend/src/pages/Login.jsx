@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // Navigation to other pages
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/das.png";
+function logout () {
+    redirect('http://localhost:5555/user/login')
+}
 const Login = () => {
     // Saving the data for utlize for get method
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // Navigation towards other pages
     const navigate = useNavigate();
+    const [isLoggedin, setIsLoggedin] = useState(false);
     // Operation to perform login check
     const handleSubmit = () =>{
         // Prevents a form from submtting
@@ -19,11 +23,16 @@ const Login = () => {
         // Storing data in json form
         console.log(email);
         console.log(password);
+
         const data = 
         {
             email,
             password
         };
+        localStorage.setItem(
+            "token-info",
+            JSON.stringify(data)
+        )
         // Calling the Login get function from backend
         axios.post("http://localhost:5555/user/login", data)
         // Try and Catch Block
@@ -31,6 +40,7 @@ const Login = () => {
                 console.log(result);
                 if(result.status === 200){
                     navigate("/home");
+                    isLoggedin(true);
                 } 
             })
             .catch((error) => {
@@ -38,6 +48,7 @@ const Login = () => {
                 console.log(error);
             })
     };
+
 
 
     return(
@@ -82,14 +93,17 @@ const Login = () => {
         //     </div>
         // </div>
 
-        <div className='p-4'>
-            <h1 className='text-3xl my-4' align="center"> <strong> Login </strong> </h1>
-            <div className ='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-                <div className = 'my-4'>
+        <div className='p-4' >
+            <div align="center">
+                <img src={logo} alt="Logo" width={1000} height={1000}/>
+            </div>
+            <h1 className='text-3xl my-4' align="center"><strong> Login </strong></h1>
+            <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+                <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Email </label>
-                    <input 
+                    <input
                         type='text'
-                        placeholder = 'Email Here'
+                        placeholder='Email Here'
                         autoComplete="off"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -97,11 +111,11 @@ const Login = () => {
                     />
                 </div>
 
-                <div className = 'my-4'>
+                <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500'> Password </label>
-                    <input 
+                    <input
                         type='password'
-                        placeholder = 'Password Here'
+                        placeholder='Password Here'
                         autoComplete="off"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -113,11 +127,12 @@ const Login = () => {
 
             </div>
 
-            <div className ='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-            <label className = "text-xl mr-4 text-gray-500">Don't Have an Account?</label>
-                <Link to="/user/signup" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none" align="center">
+            <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+                <label className="text-xl mr-4 text-gray-500">Don't Have an Account?</label>
+                <Link to="/user/signup" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+                      align="center">
                     <button className='p-2 bg-sky-300 m-8'>Sign up</button>
-                 </Link>
+                </Link>
             </div>
 
         </div>
