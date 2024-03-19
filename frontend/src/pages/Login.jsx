@@ -5,16 +5,12 @@ import axios from "axios";
 // Navigation to other pages
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/das.png";
-function logout () {
-    redirect('http://localhost:5555/user/login')
-}
 const Login = () => {
     // Saving the data for utlize for get method
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // Navigation towards other pages
     const navigate = useNavigate();
-    const [isLoggedin, setIsLoggedin] = useState(false);
     // Operation to perform login check
     const handleSubmit = () =>{
         // Prevents a form from submtting
@@ -29,10 +25,6 @@ const Login = () => {
             email,
             password
         };
-        localStorage.setItem(
-            "token-info",
-            JSON.stringify(data)
-        )
         // Calling the Login get function from backend
         axios.post("http://localhost:5555/user/login", data)
         // Try and Catch Block
@@ -40,7 +32,6 @@ const Login = () => {
                 console.log(result);
                 if(result.status === 200){
                     navigate("/home");
-                    isLoggedin(true);
                 } 
             })
             .catch((error) => {
