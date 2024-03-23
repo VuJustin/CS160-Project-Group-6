@@ -2,6 +2,7 @@ import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import userRoute from './routes/userRoute.js';
+import bookRoute from './routes/bookRoute.js'
 import cors from 'cors';
 
 
@@ -15,7 +16,10 @@ app.get('/', (request, response) => {
 // Middleware for parsing request body
 app.use(express.json());
 app.use(cors());
+// User Routes for User Collection
 app.use('/user', userRoute);
+// Book Routes for Book Collection
+app.use('/book', bookRoute);
 
 mongoose
     .connect(mongoDBURL)
