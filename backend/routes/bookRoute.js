@@ -11,7 +11,8 @@ router.post('/create',async (request, response) => {
            !request.body.publishYear ||
            !request.body.publisher ||
            !request.body.ISBN ||
-           !request.body.genre)
+           !request.body.genre ||
+           !request.body.description)
            {
             // Send out a reponse to ensure all fields are sent
             response.status(400).send({ message: "Send all required fields"});
@@ -23,7 +24,8 @@ router.post('/create',async (request, response) => {
             publishYear: request.body.publishYear,
             publisher: request.body.publisher,
             ISBN: request.body.ISBN,
-            genre: request.body.genre
+            genre: request.body.genre,
+            description: request.body.description
         };
         // After creaing this newBook variable, create a book w/ newBook values
         const book = await Book.create(newBook);
@@ -92,7 +94,8 @@ router.put('/:id', async (request, response) => {
             !request.body.publishYear ||
             !request.body.publisher ||
             !request.body.ISBN ||
-            !request.body.genre){
+            !request.body.genre ||
+            !request.body.description){
             response.status(400).send({ message: "Send all req. fields: title, author, pubYear"});
             }
         // Grabs the book id we want to update
