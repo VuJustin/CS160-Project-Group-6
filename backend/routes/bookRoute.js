@@ -89,7 +89,10 @@ router.put('/:id', async (request, response) => {
         // Checks if request has all required info, if not send out response that we need all data
         if(!request.body.title || 
             !request.body.author || 
-            !request.body.pubYear){
+            !request.body.publishYear ||
+            !request.body.publisher ||
+            !request.body.ISBN ||
+            !request.body.genre){
             response.status(400).send({ message: "Send all req. fields: title, author, pubYear"});
             }
         // Grabs the book id we want to update
