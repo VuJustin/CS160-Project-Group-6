@@ -27,6 +27,10 @@ const bookSchema = mongoose.Schema(
             required:true,
             unique: true,
         },
+        description:{
+            type:String,
+            required:true,
+        }
         
     }
 );
