@@ -10,7 +10,8 @@ router.post('/create',async (request, response) => {
            !request.body.author || 
            !request.body.publishYear ||
            !request.body.publisher ||
-           !request.body.ISBN)
+           !request.body.ISBN ||
+           !request.body.genre)
            {
             // Send out a reponse to ensure all fields are sent
             response.status(400).send({ message: "Send all required fields"});
@@ -21,7 +22,8 @@ router.post('/create',async (request, response) => {
             author: request.body.author,
             publishYear: request.body.publishYear,
             publisher: request.body.publisher,
-            ISBN: request.body.ISBN
+            ISBN: request.body.ISBN,
+            genre: request.body.genre
         };
         // After creaing this newBook variable, create a book w/ newBook values
         const book = await Book.create(newBook);
