@@ -10,6 +10,14 @@ function Home() {
             <p>You are now logged in.</p>
             <p>Welcome to Digital Archive Six! This is the home page.</p>
             <button className='p-2 bg-sky-300 m-8' onClick={() => {navigate('/'); localStorage.clear();}}>Logout</button>
+            
+            <div>
+            <button className='p-2 bg-sky-300 m-8' onClick={() => {navigate('/books')}}>Books</button>
+            </div>
+            
+            
+            
+            
         </div>
     );
 }

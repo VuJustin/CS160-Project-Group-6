@@ -21,10 +21,10 @@ router.post('/create',async (request, response) => {
         const newBook = {
             title: request.body.title,
             author: request.body.author,
+            genre: request.body.genre,
             publishYear: request.body.publishYear,
             publisher: request.body.publisher,
             ISBN: request.body.ISBN,
-            genre: request.body.genre,
             description: request.body.description
         };
         // After creaing this newBook variable, create a book w/ newBook values
