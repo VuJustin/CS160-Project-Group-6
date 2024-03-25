@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Book from "./pages/Book";
 import CreateBooks from "./pages/CreateBooks";
+import ShowBook from "./pages/ShowBook";
 
 const App = () => {
   return(
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/' element={<Login />} />
       <Route path='/books' element={<Book />} />
       <Route path='/books/create' element={<CreateBooks/>} />
+      <Route path='/books/details/:id' element={<ShowBook/>} />
     </Routes>
   )
 }

@@ -5,6 +5,8 @@ import axios from "axios";
 // Navigation to other pages
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/das.png";
+import Logo from "../components/Logo";
+
 const Login = () => {
     // Saving the data for utlize for get method
     const [email, setEmail] = useState('');
@@ -43,50 +45,9 @@ const Login = () => {
 
 
     return(
-        // <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-        //     <div className ="bg-white p3 rounded w-25"> 
-        //         <label className='text-xl mr-4'> <strong> Login </strong></label>
-        //         <form onSubmit={handleSubmit}> 
-        //             <div className="mb-3">
-        //                 <label className = "text-xl mr-4 text-gray-500"> <strong> Email </strong> </label>
-        //                 <input 
-        //                 type = 'text'
-        //                 placeholder = 'Email Here'
-        //                 autoComplete="off"
-        //                 value = {email}
-        //                 onChange={(e) => setEmail(e.target.value)}
-        //                 className = 'border-2 border-gray-500 px-4 py-2 w-full'
-        //             />
-        //             </div>
-                    
-        //             <div className="mb-3">
-        //                 <label className = "text-xl mr-4 text-gray-500"> <strong> Password </strong> </label>
-        //                 <input 
-        //                     type = 'text'
-        //                     placeholder = 'Password Here'
-        //                     autocComplete = "off"
-        //                     value = {password}
-        //                     onChange={(e) => setPassword(e.target.value)}
-        //                     className = 'border-2 border-gray-500 px-4 py-2 w-full'
-        //                 />
-        //             </div>
-                    
-        //             <button type = "submit" className = "btn btn-success w-100 rounded-0">
-        //                 Login
-        //             </button>
-                
-        //         </form>
-
-        //         <label className = "text-xl mr-4 text-gray-500">Don't Have an Account?</label>
-        //         <Link to="/user/signup" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
-        //             Sign-Up
-        //         </Link>
-        //     </div>
-        // </div>
-
         <div className='p-4' >
             <div align="center">
-                <img src={logo} alt="Logo" width={1000} height={1000}/>
+                <Logo/>
             </div>
             <h1 className='text-3xl my-4' align="center"><strong> Login </strong></h1>
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
@@ -120,10 +81,7 @@ const Login = () => {
 
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
                 <label className="text-xl mr-4 text-gray-500">Don't Have an Account?</label>
-                <Link to="/user/signup" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-                      align="center">
-                    <button className='p-2 bg-sky-300 m-8'>Sign up</button>
-                </Link>
+                <button className='p-2 bg-sky-300 m-8' onClick={() => {navigate('/user/signup')}}>Sign Up</button>
             </div>
 
         </div>

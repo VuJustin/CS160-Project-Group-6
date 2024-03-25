@@ -4,6 +4,7 @@ import BookButton from '../components/BookButton';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../components/Logo';
 
 // New Page that allows for creation of books
 // Using 3 Separete states for them
@@ -46,11 +47,17 @@ const CreateBooks = () => {
 
     return(
         
-        <div className='p-4'>           
-            <HomeButton/>
+        <div className='p-4'>
+            <Logo />           
+           
+           <div className="flex space-around">
+            <HomeButton />
+            <BookButton />
+            </div>
+
             <h1 className='text-3xl my-4'>Create Book</h1>
             
-            <BookButton/>
+           
             {/* If Loading is true show spinner or show empty string*/}
             {loading ? <Spinner /> : ''}
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>

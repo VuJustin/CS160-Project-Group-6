@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // Navigation to other pages
 import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 import logo from "../assets/das.png";
 
 
@@ -43,7 +44,7 @@ const Signup = () => {
     return(
         <div className='p-4'>
             <div align="center">
-                <img src={logo} alt="Logo" width={1000} height={1000}/>
+                <Logo/>
             </div>
             <h1 className='text-3xl my-4' align="center"><strong> Sign Up </strong></h1>
             <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
@@ -94,7 +95,7 @@ const Signup = () => {
                 </div>
 
                 <button className='p-2 bg-sky-300 m-8' onClick={handleSubmit}>Sign up</button>
-
+                <button className='p-2 bg-sky-300 m-8' onClick={() => {navigate('/')}}>Back to Login</button>
             </div>
 
         </div>

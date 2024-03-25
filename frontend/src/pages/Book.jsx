@@ -6,13 +6,14 @@ import Spinner from '../components/Spinner';
 // Importing Link
 import { Link } from 'react-router-dom';
 // Icon Edit
-import { AiOutlineEdit } from 'react-icons/ai'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
 // Info circle Icon
 import { BsInfoCircle } from 'react-icons/bs'
 // Add Icon and Delete Icon
-import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md'
+import { MdOutlineAddBox, MdShoppingBasket } from 'react-icons/md'
 // Home Button
 import HomeButton from '../components/HomeButton';
+import Logo from '../components/Logo';
 
 // Book Home Page
 const Book = () => {
@@ -39,16 +40,20 @@ const Book = () => {
 
     return (
         <div className='p-4'>
+            <Logo/>
             <div className='flex justify-between items-center'>
                 {/* Header that states Books List */}
                 <h1 className='text-3xl my-8'> Books List</h1>
                 {/* Links to the books create */}
+                <Link to='/purchase/cart'>
+                    <MdShoppingBasket className='text-sky-800 text-4xl' />
+                </Link>
+            </div>
+            <div className='flex justify-between items-center'>
+                <HomeButton/>
                 <Link to='/books/create'>
                     <MdOutlineAddBox className='text-sky-800 text-4xl' />
                 </Link>
-            </div>
-            <div>
-                <HomeButton/>
             </div>
             
             {/* 
@@ -104,11 +109,8 @@ const Book = () => {
                                         <Link to={`/books/details/${book._id}`}>
                                             <BsInfoCircle className='text-2xl text-green-800' />
                                         </Link>
-                                        <Link to={`/books/edit/${book._id}`}>
-                                            <AiOutlineEdit className='text-2xl text-yellow-600' />
-                                        </Link>
-                                        <Link to={`/books/delete/${book._id}`}>
-                                            <MdOutlineDelete className='text-2xl text-red-600' />
+                                        <Link to={`/books/addcart/${book._id}`}>
+                                            <AiOutlineShoppingCart className='text-2xl text-green-600' />
                                         </Link>
                                     </div>
                                 </td>
